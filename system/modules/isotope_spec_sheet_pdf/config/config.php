@@ -11,4 +11,4 @@
 **/
 
 // Create Invoice - List's a psychologists entries in the Work Assignment sheet
-$GLOBALS['FE_MOD']['isotope_spec_sheet_pdf']['mod_isotope_spec_sheet_pdf']              = 'Bcs\Module\IsotopeSpecSheetPDF';
+$GLOBALS['FE_MOD']['isotope_spec_sheet_pdf']['mod_pdf_generation']              = 'Bcs\Module\ModPDFGeneration';
