@@ -14,7 +14,7 @@
 ClassLoader::addClasses(array
 (
     // Our Frontend Modules
-    'Bcs\Module\IsotopeSpecSheetPDF'    => 'system/modules/isotope_spec_sheet_pdf/library/Bcs/Module/IsotopeSpecSheetPDF.php'
+    'Bcs\Module\ModPDFGeneration'    => 'system/modules/isotope_spec_sheet_pdf/library/Bcs/Module/ModPDFGeneration.php'
 ));
 
 /* Register the templates */
