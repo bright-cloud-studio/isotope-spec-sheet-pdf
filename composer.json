@@ -1,0 +1,29 @@
+{
+    "name":"bright-cloud-studio/isotope-spec-sheet-pdf",
+    "description":"Generates a PDF Spec Sheet when clicking a link on an Isotope Product Reader page within Contao",
+    "homepage": "http://brightcloudstudio.com/",
+    "keywords":["contao", "isotope", "pdf", "generator"],
+    "type":"contao-module",
+    "license":"LGPL-3.0-or-later",
+    "authors":[
+        {
+            "name":"Bright Cloud Studio",
+            "homepage":"https://brightcloudstudio.com"
+        }
+    ],
+    "require":{
+        "php": "^8.0",
+        "contao/core-bundle": "^4.13"
+    },
+    "require-dev": {
+        "contao/manager-plugin": "^2.0"
+    },
+    "extra": {
+        "contao": {
+            "sources": {
+                "system/modules/isotope_spec_sheet_pdf": "system/modules/isotope_spec_sheet_pdf"
+            }
+        }
+    },
+    "minimum-stability": "dev"
+}
