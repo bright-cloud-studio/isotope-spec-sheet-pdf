@@ -13,7 +13,7 @@
 
 namespace Bcs\Module;
 
-class IsotopeSpecSheetPDFModule extends \Contao\Module
+class ModPDFGeneration extends \Contao\Module
 {
 
   /**
