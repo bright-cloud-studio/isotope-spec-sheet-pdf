@@ -11,12 +11,25 @@ $( document ).ready(function() {
         $.ajax({
             url:'/system/modules/isotope_spec_sheet_pdf/assets/php/action.generate.pdf.php',
             type:'POST',
+            responseType: 'arraybuffer',
+            
+            success: function(data) {
+                var blob=new Blob([data], {type: 'application/pdf'});
+                var link=document.createElement('a');
+                link.href=window.URL.createObjectURL(blob);
+                link.download="spec_sheet.pdf";
+                link.click();
+              }
+            
+            
+            /*
             success:function(result){
                 console.log("PDF: Generation Successful");
             },
             error:function(result){
                 console.log("PDF: Generation Failure");
             }
+            */
         });
         
     
