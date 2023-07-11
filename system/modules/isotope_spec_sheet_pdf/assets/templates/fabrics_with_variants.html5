@@ -1,11 +1,19 @@
 <html>
-<head>
-</head>
-<body>
+  <head>
+    <style>
+      .section_1 {
+        background-color: red;
+        width: 50%;
+      }
+      .section_2 { background-color: green; }
+      .section_3 { background-color: blue; }
+    </style>
+  </head>
+  <body>
 
-<h1>Template</h1>
-
-<p>This is a blank template for a web page.</p>
-
-</body>
+    <div class="section_1">
+      Logo goes here
+    </div>
+    
+  </body>
 </html>
