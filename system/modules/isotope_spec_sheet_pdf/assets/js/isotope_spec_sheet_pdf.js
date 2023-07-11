@@ -8,11 +8,20 @@ $(document).ready(function() {
         // Push a clicked message to the console so we know our event triggered
         console.log("PDF: Link clicked");
 
+        // Load our template file and pass it to the php script
+        var html_template;
+        $.get( "../templates/fabrics_with_variants.html", function( data ) {
+            html_template = data;
+            // the contents is now in the variable data
+            alert(html_template);
+        });
+
         // Ajax call is using a plugin "jquery-ajax-native.js" that allows it to get the returned data in the correct format, otherwise we were downloading a blank PDF
         $.ajax({
             dataType: 'native',
             url:'/system/modules/isotope_spec_sheet_pdf/assets/php/action.generate.pdf.php',
             type:'POST',
+            data: { html_template:html_template },
             xhrFields: {
                 responseType: 'blob'
             },
