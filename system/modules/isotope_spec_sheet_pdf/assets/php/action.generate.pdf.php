@@ -28,7 +28,7 @@
     $html .= '<h4>Spec Sheet</h4><br>';
 
     // Load our HTML into dompdf
-	$dompdf->loadHtml($html);
+	$dompdf->loadHtml($_POST['html_template']);
 	
 	// Set our paper size and orientation
 	$dompdf->setPaper('A4', 'portrait');
