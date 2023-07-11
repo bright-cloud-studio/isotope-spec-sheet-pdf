@@ -46,7 +46,7 @@
         {
             // add our js
             $rand_ver = rand(1,9999);
-            $GLOBALS['TL_BODY'][] = '<script src="system/modules/isotope_spec_sheet_pdf/assets/js/isotope_spec_sheet_pdf.js?v='.$rand_ver.'"></script>';
+            $GLOBALS['TL_BODY']['isotope_spec_sheet_pdf'] = '<script src="system/modules/isotope_spec_sheet_pdf/assets/js/isotope_spec_sheet_pdf.js?v='.$rand_ver.'"></script>';
         }
 
     } 
