@@ -7,7 +7,7 @@ $( document ).ready(function() {
 
         console.log("PDF: Link clicked");
 
-        /*
+        
         $.ajax({
             url:'/system/modules/isotope_spec_sheet_pdf/assets/php/action.generate.pdf.php',
             type:'POST',
@@ -18,7 +18,7 @@ $( document ).ready(function() {
                 console.log("PDF: Generation Failure");
             }
         });
-        */
+        
     
     });
 
