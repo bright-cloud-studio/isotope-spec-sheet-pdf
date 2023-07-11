@@ -44,10 +44,11 @@
         /* Generate the module */
         protected function compile()
         {
-            // add our js
+            // Add our own JS script onto the page
             $rand_ver = rand(1,9999);
             $GLOBALS['TL_BODY']['isotope_spec_sheet_pdf'] = '<script src="system/modules/isotope_spec_sheet_pdf/assets/js/isotope_spec_sheet_pdf.js?v='.$rand_ver.'"></script>';
 
+            // Add the needed library 'jquery_ajax_native' that lets us get back blobs from the PHP script so we can turn it into a downloadable PDF
             $rand_ver = rand(1,9999);
             $GLOBALS['TL_BODY']['jquery_ajax_native'] = '<script src="system/modules/isotope_spec_sheet_pdf/assets/js/jquery_ajax_native.js?v='.$rand_ver.'"></script>';
         }
