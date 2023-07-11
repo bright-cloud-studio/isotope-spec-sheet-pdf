@@ -15,7 +15,7 @@
     $options = new Options();
 
     // Set our options
-    $options->set("defaultFont", "Courier");
+    $options->set("defaultFont", "Helvetica");
 
 	// Initialize dompdf with our options
 	$dompdf = new Dompdf($options);
