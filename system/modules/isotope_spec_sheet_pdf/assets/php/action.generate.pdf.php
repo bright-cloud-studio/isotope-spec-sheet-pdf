@@ -23,7 +23,7 @@
     $html .= '<h4>Spec Sheet</h4><br>';
 
 
-	$dompdf->loadHtml('<h1>Spec Sheet</h1>');
+	$dompdf->loadHtml($html);
 	
 	// (Optional) Setup the paper size and orientation
 	$dompdf->setPaper('A4', 'portrait');
