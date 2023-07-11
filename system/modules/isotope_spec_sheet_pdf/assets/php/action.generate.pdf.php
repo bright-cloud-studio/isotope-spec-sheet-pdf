@@ -21,14 +21,63 @@
 	$dompdf = new Dompdf($options);
 
     // Build our HTML
-    $html = "";
-    $html .= '<h1>Spec Sheet</h1><br>';
-    $html .= '<h2>Spec Sheet</h2><br>';
-    $html .= '<h3>Spec Sheet</h3><br>';
-    $html .= '<h4>Spec Sheet</h4><br>';
+    $html = "<html>
+	<head>
+		<style>
+			body {
+				display: flex;
+				flex-flow: row wrap;
+			}
+			.section_1 {
+				background-color: red;
+				width: 100%;
+			}
+			.section_2 {
+				background-color: green;
+				width: 50%;
+			}
+			.section_3 {
+				background-color: blue;
+				width: 50%;
+			}
+			.section_4 {
+				background-color: orange;
+				width: 100%;
+			}
+			.section_5 {
+				background-color: yellow;
+				width: 100%;
+			}
+		</style>
+	</head>
+	<body>
+
+		<div class='section_1'>
+			Logo
+		</div>
+		
+		<div class='section_2'>
+			Product Image
+		</div>
+		
+		<div class='section_3'>
+			Product Details
+		</div>
+		
+		<div class='section_4'>
+			Colors
+		</div>
+		
+		<div class='section_5'>
+			Specs
+		</div>
+		
+	</body>
+</html>
+";
 
     // Load our HTML into dompdf
-	$dompdf->loadHtml($_POST['html_template']);
+	$dompdf->loadHtml($html);
 	
 	// Set our paper size and orientation
 	$dompdf->setPaper('A4', 'portrait');
