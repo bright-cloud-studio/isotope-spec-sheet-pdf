@@ -5,7 +5,7 @@
 	/*************************************/
 	
 	// mandatory to get all of our composer goodness
-	require 'vendor/autoload.php';
+	require '../../vendor/autoload.php';
 	
 	
 	
