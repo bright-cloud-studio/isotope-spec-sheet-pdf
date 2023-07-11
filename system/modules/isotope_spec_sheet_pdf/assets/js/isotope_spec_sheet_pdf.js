@@ -19,7 +19,7 @@ $(document).ready(function() {
         // Ajax call is using a plugin "jquery-ajax-native.js" that allows it to get the returned data in the correct format, otherwise we were downloading a blank PDF
         $.ajax({
             dataType: 'native',
-            url:'/system/modules/isotope_spec_sheet_pdf/assets/php/action.generate.pdf.php',
+            url:'/system/modules/isotope_spec_sheet_pdf/assets/php/action.generate.pdf.php?testy=test123',
             type:'POST',
             data: { html_template:html_template },
             xhrFields: {
