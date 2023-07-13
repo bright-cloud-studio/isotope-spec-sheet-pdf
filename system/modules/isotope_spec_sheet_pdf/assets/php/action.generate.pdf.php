@@ -46,7 +46,7 @@
 	/**********************************/
 	
 	// Get our product information that is stored in the session
-  	$product_data = unserialize($_SESSION['pdf_data'][$product_id]);
+  	$product_data = unserialize($_SESSION['pdf_data']['id_' . $product_id]);
 	
 	
 	/*******************/
