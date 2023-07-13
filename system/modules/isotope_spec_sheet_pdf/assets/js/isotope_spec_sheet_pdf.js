@@ -2,14 +2,10 @@
 // When the page has finished loading entirely
 $(document).ready(function() {
     
-    /* Get the image src on page */
+    /* Get information that's on page */
     var product_image = $('.main_image img').attr('src');
-    console.log(product_image);
-    
     var product_id = $('.hidden_data #product_id').text();
-    console.log(product_id);
     
-
     // When the "Complete Work Assignment" button is clicked
     $('.mod_isotope_spec_sheet_pdf #generate_pdf').on("click", function(e) {
 
