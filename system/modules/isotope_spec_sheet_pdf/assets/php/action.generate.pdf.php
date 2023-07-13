@@ -1,64 +1,102 @@
 <?php
-
-	/*************************************/
-	/* TEST SCRIPT - GENERATE SAMPLE PDF */
-	/*************************************/
 	
+	/*******************/
+	/* REQUIRED STUFFS */
+	/*******************/
+	
+	// Session is required as we stored our product information inside it
 	session_start();
-	
-	$product_id = $_POST['product_id'];
-	
-	// mandatory to get all of our composer goodness
+	// Bring in composer since that's how everything works nowadays
 	require_once $_SERVER['DOCUMENT_ROOT'] . '/../vendor/autoload.php';
-
-	// Use what we need
+	
+	// Uses always go at the top, we are using Dompdf and it's options class
 	use Dompdf\Dompdf;
     use Dompdf\Options;
-
-    // Create our options
+	
+	
+	/********************/
+	/* INITALIZE STUFFS */
+	/********************/
+	
+    // Create our Dompdf Options class
     $options = new Options();
-
     // Set our options
     $options->set("defaultFont", "Helvetica");
     $options->set("isRemoteEnabled", "true");
 
-	// Initialize dompdf with our options
+	// Initialize Dompdf using our just set up Options
 	$dompdf = new Dompdf($options);
 	
 	
+	/*****************************/
+	/* MANUALLY PASSED IN STUFFS */
+	/*****************************/
+	
+	// Our product id is passed in manually so we know which session array to access to get our product information
+	$product_id = $_POST['product_id'];
+	
+	// In order to avoid having to figure out where our image is stored, as $product_data only contains the filename, instead
+  	// we pass in the file structure plus product name by grabbing it with jQuery on the Product Reader page itself. Then, we 
+  	// create $img_src which is the full address to the image
+  	$img_src = "https://" . $_SERVER['SERVER_NAME'] . "/" . $_POST['product_image'];
+	
+	
+	/**********************************/
+	/* PRODUCT DATA STORED IN SESSION */
+	/**********************************/
+	
 	// Get our product information that is stored in the session
   	$product_data = unserialize($_SESSION['pdf_data'][$product_id]);
+	
+	
+	/*******************/
+	/* TEMPLATE STUFFS */
+	/*******************/
   	
-  	$img_src = "https://" . $_SERVER['SERVER_NAME'] . "/" . $_POST['product_image'];
-  	
-  	//$product_image = '<img src="'.$product_image_src.'" width="200" height="200" alt="Beauty Shot alt" title="Temporary Beauty Shot"><br><br>';
-	
-	
-	
-	
-	
-	
-	
-
     // Load our HTML template
     $html = file_get_contents('../templates/product_type_'.$product_data->type.'.html', true);
-    
     
     // Replace our tags with the proper values
     $html = str_replace("{{img_src}}", $img_src, $html);
     
+    // Find all instances of our tag brackets '{{tag}}' and store them in the $tags array
+    preg_match_all('/\{{2}(.*?)\}{2}/is', $html, $tags);
+    
+    // Loop through those tags and replace them with the correct product data
+    foreach($tags[0] as $tag) {
+        
+        // Remove brackets from our tag
+        $cleanTag = str_replace("{{","",$tag);
+        $cleanTag = str_replace("}}","",$cleanTag);
+        
+        // Explode our tag into two parts
+	    $explodedTag = explode("::", $cleanTag);
+	    
+	    // Do different things based on the first part of our tag
+	    switch($explodedTag[0]) {
+		    
+		    // If the first part of our exploded tag is "product" we are looking for an attribute
+		    case 'product':
+		        
+		        // Get the product attribute that is based on our second half of the tag
+		        // This thing is super powerful. Trying to reference the class data typically required knowing the name ahead of time
+		        // But now this way by closing our variable in "{ }" brackets it acts as if it's a fixed name, so we can get any product
+		        // data without having to write each tag manually. Just put in a products attribute name in the template and we will get
+		        // back the correct data. Super happy with this, I did not know it was possible.
+		        $html = str_replace($tag, $product_data->{$explodedTag[1]}, $html);
+		    
+		    break;
+	    }
+        
+    }
     
     
-    
-    
-    
-    
-    
-
+    /***********************/
+	/* GENERATE PDF STUFFS */
+	/***********************/
+	
     // Load our HTML into dompdf
 	$dompdf->loadHtml($html);
-	//$dompdf->loadHtml($specifications);
-	
 	
 	// Set our paper size and orientation
 	$dompdf->setPaper('A4', 'portrait');
