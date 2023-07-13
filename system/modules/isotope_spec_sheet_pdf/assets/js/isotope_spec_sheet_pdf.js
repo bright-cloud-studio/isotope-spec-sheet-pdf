@@ -2,7 +2,7 @@
 // When the page has finished loading entirely
 $(document).ready(function() {
     
-    
+    /* Get the image src on page */
     var product_image = $('.main_image img').attr('src');
     console.log(product_image);
     
@@ -15,14 +15,6 @@ $(document).ready(function() {
 
         // Push a clicked message to the console so we know our event triggered
         console.log("PDF: Link clicked");
-        
-        
-        
-        
-        
-        
-        
-        
         
 
         // Ajax call is using a plugin "jquery-ajax-native.js" that allows it to get the returned data in the correct format, otherwise we were downloading a blank PDF
