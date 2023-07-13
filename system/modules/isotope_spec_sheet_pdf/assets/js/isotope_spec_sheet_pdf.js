@@ -1,19 +1,36 @@
 
 // When the page has finished loading entirely
 $(document).ready(function() {
+    
+    
+    var product_image = $('.main_image img').attr('src');
+    console.log(product_image);
+    
+    var product_id = $('.hidden_data #product_id').text();
+    console.log(product_id);
+    
 
     // When the "Complete Work Assignment" button is clicked
     $('.mod_isotope_spec_sheet_pdf #generate_pdf').on("click", function(e) {
 
         // Push a clicked message to the console so we know our event triggered
         console.log("PDF: Link clicked");
+        
+        
+        
+        
+        
+        
+        
+        
+        
 
         // Ajax call is using a plugin "jquery-ajax-native.js" that allows it to get the returned data in the correct format, otherwise we were downloading a blank PDF
         $.ajax({
             dataType: 'native',
-            url:'/system/modules/isotope_spec_sheet_pdf/assets/php/action.generate.pdf.php?testy=test123',
+            url:'/system/modules/isotope_spec_sheet_pdf/assets/php/action.generate.pdf.php',
             type:'POST',
-            data: { our_data: "test 1 2 3" },
+            data: { product_image: product_image, product_id: product_id },
             xhrFields: {
                 responseType: 'blob'
             },
