@@ -8,7 +8,9 @@ Each product type will need it's own template. In the 'system/modules/isotope_sp
 
 # Templates - Tags
 Within each template you can use tags that will be replaced with the product data when the PDF is generated. Here is a list of manual tags that have hard-coded uses
+
 {{img_src}} - This tag will be replaced with the main image's source.
 
 If you want to include a product's attribute in the template use the following tag
+
 {{product::ATTRIBUTE}} where ATTRIBUTE is the internal name of that product's attribute.
