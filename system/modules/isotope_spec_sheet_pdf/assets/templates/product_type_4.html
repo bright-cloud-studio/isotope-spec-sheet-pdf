@@ -1,0 +1,54 @@
+<html>
+	<head>
+		<style>
+		
+		    /* These are necessary to remove the margin on the paper */
+		    @page { margin: 5px; }
+            body { margin: 5px; }
+
+            /* Images */
+			.logo {
+			    width: 400px;
+			    height: 150px;
+			}
+			.product_image {
+			    width: 200px;
+			    height: 200px;
+			}
+			
+			/* Table */
+			table {
+			    width: 100%;
+			    height: auto;
+			}
+			table , td, th {
+            	border: 1px solid #595959;
+            	border-collapse: collapse;
+            }
+
+		</style>
+	</head>
+	<body>
+	    
+        <table>
+            <tbody>
+                <tr>
+                    <td colspan="2">
+                        <img id="logo" class="logo" src="{{img_src}}">
+                    </td>
+                </tr>
+                <tr>
+                    <td><img id="product_image" class="product_image" src="{{img_src}}"></td>
+                    <td>{{product::name}}</td>
+                </tr>
+                <tr>
+                    <td colspan="2">f</td>
+                </tr>
+                <tr>
+                    <td colspan="2">g</td>
+                </tr>
+            </tbody>
+        </table>
+		
+	</body>
+</html>
