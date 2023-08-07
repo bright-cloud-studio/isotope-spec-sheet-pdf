@@ -46,7 +46,8 @@
 	/**********************************/
 	
 	// Get our product information that is stored in the session
-  	$product_data = unserialize($_SESSION['pdf_data']['id_' . $product_id]);
+  	$product_data = unserialize($_SESSION['pdf_data'][$product_id]);
+  	$product_options = unserialize($_SESSION['product_options'][$product_id]);
 	
 	
 	/*******************/
@@ -86,6 +87,16 @@
 		        $html = str_replace($tag, $product_data->{$explodedTag[1]}, $html);
 		    
 		    break;
+		    
+		    //colors
+		    case 'options':
+		        
+	            foreach($product_options as $thing) {
+                    $html = str_replace($tag, $thing[$explodedTag[1]], $html);
+                }
+		        
+		        
+		        break;
 	    }
         
     }
