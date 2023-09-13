@@ -84,19 +84,56 @@
 		        // But now this way by closing our variable in "{ }" brackets it acts as if it's a fixed name, so we can get any product
 		        // data without having to write each tag manually. Just put in a products attribute name in the template and we will get
 		        // back the correct data. Super happy with this, I did not know it was possible.
-		        $html = str_replace($tag, $product_data->{$explodedTag[1]}, $html);
+		        switch($explodedTag[1]) {
+		            case 'name':
+		                $html = str_replace($tag, $product_data->{$explodedTag[1]}, $html);
+		                break;
+		            case 'description':
+		                $html = str_replace($tag, $product_data->{$explodedTag[1]}, $html);
+		                break;
+		            default:
+		                
+		                $title = ucwords($explodedTag[1]);
+		                $title = str_replace("_"," ",$title);
+		                
+		                $buffer = '';
+		                $buffer .= "<div class='attribute " . $explodedTag[1] . "'>";
+		                $buffer .= "<h3>" . $title . "</h3>";
+		                $buffer .= $product_data->{$explodedTag[1]};
+		                $buffer .= "</div>";
+		                
+		                $html = str_replace($tag, $buffer, $html);
+		                
+		                break;
+		        }
+		        
 		    
 		    break;
 		    
 		    //colors
 		    case 'options':
 		        
+		        $buffer = '';
 	            foreach($product_options as $thing) {
-                    $html = str_replace($tag, $thing[$explodedTag[1]], $html);
+                    $buffer .= $thing[$explodedTag[1]];
                 }
-		        
+                $html = str_replace($tag, $buffer, $html);
 		        
 		        break;
+		        
+		    case 'year':
+		        $buffer = date('Y');
+                $html = str_replace($tag, $buffer, $html);
+		        
+		        break;
+		        
+		    case 'site_url':
+		        $buffer = "https://" . $_SERVER['SERVER_NAME'];
+                $html = str_replace($tag, $buffer, $html);
+		        
+		        break;
+		        
+		  
 	    }
         
     }
