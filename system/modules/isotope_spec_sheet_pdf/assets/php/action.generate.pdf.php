@@ -23,9 +23,19 @@
     // Set our options
     $options->set("defaultFont", "Helvetica");
     $options->set("isRemoteEnabled", "true");
+    $options->setChroot('/');
 
 	// Initialize Dompdf using our just set up Options
 	$dompdf = new Dompdf($options);
+	
+	$context = stream_context_create([ 
+    	'ssl' => [ 
+    		'verify_peer' => FALSE, 
+    		'verify_peer_name' => FALSE,
+    		'allow_self_signed'=> TRUE 
+    	] 
+    ]);
+    $dompdf->setHttpContext($context);
 	
 	
 	/*****************************/
@@ -38,7 +48,7 @@
 	// In order to avoid having to figure out where our image is stored, as $product_data only contains the filename, instead
   	// we pass in the file structure plus product name by grabbing it with jQuery on the Product Reader page itself. Then, we 
   	// create $img_src which is the full address to the image
-  	$img_src = "https://" . $_SERVER['SERVER_NAME'] . "/" . $_POST['product_image'];
+  	$img_src = $_SERVER["DOCUMENT_ROOT"] . "/../" . $_POST['product_image'];
 	
 	
 	/**********************************/
@@ -115,7 +125,8 @@
 		        
 		        $buffer = '';
 	            foreach($product_options as $thing) {
-                    $buffer .= $thing[$explodedTag[1]];
+	                $cleaned = str_replace("https://acousticalproducts.com/", $_SERVER["DOCUMENT_ROOT"] . '/../', $thing[$explodedTag[1]]);
+                    $buffer .= $cleaned;
                 }
                 $html = str_replace($tag, $buffer, $html);
                 
@@ -128,7 +139,8 @@
 		        break;
 		        
 		    case 'site_url':
-		        $buffer = "https://" . $_SERVER['SERVER_NAME'];
+		        //$buffer = "https://" . $_SERVER['SERVER_NAME'];
+                $buffer = $_SERVER["DOCUMENT_ROOT"] . '/..';
                 $html = str_replace($tag, $buffer, $html);
 		        
 		        break;
