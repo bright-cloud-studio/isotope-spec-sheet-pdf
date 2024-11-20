@@ -118,7 +118,7 @@
                     $buffer .= $thing[$explodedTag[1]];
                 }
                 $html = str_replace($tag, $buffer, $html);
-		        
+                
 		        break;
 		        
 		    case 'year':
@@ -142,6 +142,11 @@
     /***********************/
 	/* GENERATE PDF STUFFS */
 	/***********************/
+	
+	// DEBUG
+	//$myfile = fopen("debug_".rand(111111,999999).".txt", "w") or die("Unable to open file!");
+    //fwrite($myfile, $html);
+    //fclose($myfile);
 	
     // Load our HTML into dompdf
 	$dompdf->loadHtml($html);
